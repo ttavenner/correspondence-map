@@ -1,0 +1,22 @@
+{
+  "name": "get-data",
+  "version": "0.0.1",
+  "description": "A simple script to grab data from the DPLA API and save it to a CSV file",
+  "author": "Tommy Tavenner <tommy@ttavenner.com>",
+  "scripts": {
+    "start": "node get-data.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttavenner/correspondence-map"
+  },
+  "bugs": {
+    "url": "https://github.com/ttavenner/correspondence-map/issues"
+  },
+  "dependencies": {
+    "qs": "*",
+    "request": "*",
+    "csv-write-stream": "*"
+  },
+  "license": "AGPLv3"
+}

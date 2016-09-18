@@ -1,0 +1,122 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+}
+
+#map {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid #c09761;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -20%;
+    min-width: 20%;
+    max-width: 50%;
+    background: #f5e8db;
+    border-left: 1px solid #c09761;
+    z-index: 100;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#info {
+    position: relative;
+    width: 90%;
+    font-size: 0.9em;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#controls {
+  position: fixed;
+  top: 0;
+  left: 5%;
+  width: 20%;
+  height: 8%;
+  border-left: 1px solid #c09761;
+  border-right: 1px solid #c09761;
+  border-bottom: 1px solid #c09761;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #f5e8db;
+  z-index: 100;
+  text-align: center;
+}
+
+#dates {
+  position: fixed;
+  top: 1%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #784212;
+  z-index: 90;
+}
+
+#slider {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 65%;
+}
+
+#timeButtons {
+  display: inline;
+  width: 25%;
+}
+
+#pauseButton {
+  display: none;
+}
+
+#controlLabel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-aign: center;
+  color: #784212;
+}
+
+#NaNFilters {
+  margin-top: 5px;
+}
+
+label {
+  text-align: right;
+}
+
+span.ctrlLink {
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+}
+
+a {
+  color: #000;
+}
+
+p.letter {
+  line-height: 120%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c09761;
+}

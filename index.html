@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Correspondence Map</title>
+    <link rel="stylesheet" href="css/jquery/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/jquery/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" href="css/jquery/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="css/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet/MarkerCluster.css" />
+    <link rel="stylesheet" href="css/leaflet/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="text/javascript" src="js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.csv-0.71.js"></script>
+    <script type="text/javascript" src="js/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="js/leaflet/leaflet.markercluster.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/sidebar.js"></script>
+    <script type="text/javascript" src="js/controls.js"></script>
+    <script type="text/javascript">
+      $(() => { startControls(); })
+    </script>
+</head>
+<body>
+<div id="controls" class="controlgroup">
+  <div id="slider"></div>
+  <div id="timeButtons">
+    <span id="playButton" title="Play" class="ctrlLink ui-icon ui-state-default ui-corner-all ui-icon-play"></span>
+    <span id="pauseButton" title="Pause" class="ctrlLink ui-icon ui-state-default ui-corner-all ui-icon-pause"></span>
+    <span id="stopButton" title="Stop" class="ctrlLink ui-icon ui-state-default ui-corner-all ui-icon-stop"></span>
+  </div>
+  <div id="NaNFilters">
+    <label><input type="checkbox" id="includeNaN" value="includeNaN">Include letters with no date</label>
+  </div>
+  <p id="controlLabel">Controls</p>
+</div>
+<div id="dates"></div>
+<div id="map"></div>
+<div id="sidebar"><div id="info"></div></div>
+<script type="text/javascript" src="js/map.js"></script>
+</body>
+</html>
