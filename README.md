@@ -3,6 +3,7 @@ A geographic visualization of correspondence between abolitionists in the 19th c
 
 # Project Set Up
 This project consists of two parts:
+
 1. A parser for downloading data from the DPLA API
 2. A map that visualizes the data using LeafletJS
 
