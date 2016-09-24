@@ -33,14 +33,14 @@ var sidebar = (() => {
 
       if (type == "place") {
         text = data.rows.reduce((p, c) => {
-          if (c.sentlocation == sentLocation || c.receivedlocation == receivedLocation) {
+          if (c.sentLocation == sentLocation || c.receivedLocation == receivedLocation) {
 
             return p + "<p class='letter'>" +
-            "From: " + c.Sender + "<br />" +
-            "To: " + c.Recipient + "<br />" +
+            "From: " + c.sender + "<br />" +
+            "To: " + c.recipient + "<br />" +
             "Date: " + c.date + "<br />" +
-            c.Title + "<br />" +
-            "<a href='" + c.Link + "'>Original Document</a>" +
+            c.title + "<br />" +
+            "<a href='" + c.link + "'>Original Document</a>" +
             "</p>"
           }
           else {
@@ -51,13 +51,13 @@ var sidebar = (() => {
 
       if (type == "line") {
           text = data.rows.reduce((p, c) => {
-              if (c.sentlocation == sentLocation && c.receivedlocation == receivedLocation) {
+              if (c.sentLocation == sentLocation && c.receivedLocation == receivedLocation) {
                 return p + "<p class='letter'>" +
-                "From: " + c.Sender + "<br />" +
-                "To: " + c.Recipient + "<br />" +
+                "From: " + c.sender + "<br />" +
+                "To: " + c.recipient + "<br />" +
                 "Date: " + c.date + "<br />" +
-                c.Title + "<br />" +
-                "<a href='" + c.Link + "'>Original Document</a>" +
+                c.title + "<br />" +
+                "<a href='" + c.link + "'>Original Document</a>" +
                 "</p>"
               }
           },"")

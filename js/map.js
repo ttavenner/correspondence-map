@@ -25,8 +25,8 @@ var points = data.rows.reduce((p, c) => {
   var pos = -1
 
   // Add the sent location to the point array
-  if (c.hasOwnProperty('sent_point') && !(typeof c.sent_point === "undefined")) {
-    pos = p.map((e) => {return e.name}).lastIndexOf(c.sentlocation)
+  if (c.hasOwnProperty('sentPoint') && !(typeof c.sentPoint === "undefined")) {
+    pos = p.map((e) => {return e.name}).lastIndexOf(c.sentLocation)
 
     if (pos != -1) {
       //if (typeof p[pos].point === "undefined") { console.log(p[pos])}
@@ -41,8 +41,8 @@ var points = data.rows.reduce((p, c) => {
     }
     else {
       newArr.push({
-        name: c.sentlocation,
-        point: c.sent_point,
+        name: c.sentLocation,
+        point: c.sentPoint,
         lowerYear: isNaN(c.cleanDate) ? data.minYear : Math.max(c.cleanDate.getFullYear(), data.minYear),
         upperYear: isNaN(c.cleanDate) ? data.maxYear : Math.min(c.cleanDate.getFullYear(), data.maxYear),
         countWithDate: isNaN(c.cleanDate) ? 0 : 1,
@@ -52,7 +52,7 @@ var points = data.rows.reduce((p, c) => {
   }
 
   // Add the received location to the point array
-  if (c.hasOwnProperty('receive_point') && !(typeof c.receive_point === "undefined")) {
+  if (c.hasOwnProperty('receivedPoint') && !(typeof c.receivedPoint === "undefined")) {
     pos = p.map((e) => {return e.name}).lastIndexOf(c.receivedlocation)
 
     if (pos != -1) {
@@ -68,7 +68,7 @@ var points = data.rows.reduce((p, c) => {
     else {
       newArr.push({
         name: c.receivedlocation,
-        point: c.receive_point,
+        point: c.receivedPoint,
         lowerYear: isNaN(c.cleanDate) ? data.minYear : Math.max(c.cleanDate.getFullYear(), data.minYear),
         upperYear: isNaN(c.cleanDate) ? data.maxYear : Math.min(c.cleanDate.getFullYear(), data.maxYear),
         countWithDate: isNaN(c.cleanDate) ? 0 : 1,
@@ -85,9 +85,9 @@ var points = data.rows.reduce((p, c) => {
 var lines = data.rows.reduce((p, c) => {
   var pos = -1
 
-  if (c.hasOwnProperty('line_name')) {
+  if (c.hasOwnProperty('lineName')) {
 
-    pos = p.map((e) => {return e.name}).lastIndexOf(c.line_name)
+    pos = p.map((e) => {return e.name}).lastIndexOf(c.lineName)
 
     if (pos != -1) {
       if (!isNaN(c.cleanDate)) {
@@ -102,7 +102,7 @@ var lines = data.rows.reduce((p, c) => {
     }
     else {
       return p.concat({
-        name: c.line_name,
+        name: c.lineName,
         line: c.line,
         lowerYear: isNaN(c.cleanDate) ? data.minYear : Math.max(c.cleanDate.getFullYear(), data.minYear),
         upperYear: isNaN(c.cleanDate) ? data.maxYear : Math.min(c.cleanDate.getFullYear(), data.maxYear),
@@ -213,6 +213,7 @@ function createLineLayers(minYear, maxYear) {
       return l
     }
   })
+
   // Setup line and point values used for display
   var lineMax = Math.max.apply(Math, lines.map((l) => { return l.count }))
   var lineColors = ['#410d4f','#a44abc','#16a7e6']

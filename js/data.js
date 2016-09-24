@@ -23,26 +23,25 @@ var data = (() => {
   // Convert latitudes, longitudes, and dates into useful objects
   // and add to the array
   var rows = fileObj.map((l) => {
-    if (!isNaN(parseFloat(l.sender_lat)) && !isNaN(parseFloat(l.sender_lng))) {
-      l.sent_point = L.latLng(parseFloat(l.sender_lat), parseFloat(l.sender_lng))
+    if (!isNaN(parseFloat(l.senderLat)) && !isNaN(parseFloat(l.senderLng))) {
+      l.sentPoint = L.latLng(parseFloat(l.senderLat), parseFloat(l.senderLng))
     }
-    if (!isNaN(parseFloat(l.receiver_lat)) && !isNaN(parseFloat(l.receiver_lng))) {
-      l.receive_point = L.latLng(parseFloat(l.receiver_lat), parseFloat(l.receiver_lng))
+    if (!isNaN(parseFloat(l.receiverLat)) && !isNaN(parseFloat(l.receiverLng))) {
+      l.receivedPoint = L.latLng(parseFloat(l.receiverLat), parseFloat(l.receiverLng))
     }
 
-    if (!isNaN(parseFloat(l.sender_lat)) && !isNaN(parseFloat(l.sender_lng))
-        && !isNaN(parseFloat(l.receiver_lat)) && !isNaN(parseFloat(l.receiver_lng))) {
-      l.line = L.polyline([[parseFloat(l.sender_lat),parseFloat(l.sender_lng)],
-                        [parseFloat(l.receiver_lat),parseFloat(l.receiver_lng)]])
+    if (!isNaN(parseFloat(l.senderLat)) && !isNaN(parseFloat(l.senderLng))
+        && !isNaN(parseFloat(l.receiverLat)) && !isNaN(parseFloat(l.receiverLng))) {
+      l.line = L.polyline([[parseFloat(l.senderLat),parseFloat(l.senderLng)],
+                        [parseFloat(l.receiverLat),parseFloat(l.receiverLng)]])
 
-      l.line_name = l.sentlocation + ' to ' + l.receivedlocation
+      l.lineName = l.sentLocation + ' to ' + l.receivedLocation
     }
 
     l.cleanDate = isNaN(Date.parse(l.date)) ? NaN : new Date(l.date)
 
     return l
   })
-
 
   // Calculate minimum and maximum years
   var minYear = rows.reduce((p, c) => {
