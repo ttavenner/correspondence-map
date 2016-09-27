@@ -23,7 +23,7 @@ This project consists of two parts:
 4. From the command prompt window run `node get-data.js`. This will download the data into a file called letters.csv
 
 ## Setting up the map
-Before running the map you will need to save the `letters.csv` file you created with the parser into the main repository folder. If you are using your own data, the map assumes that you have a file named `letters.csv` with at least the following columns:
+Before running the map you will need to save the `letters.csv` file you created with the parser into the main repository folder. The repo includes a sample letters file named `letters-sample.csv`. To use this data set simply rename this file to `letters.csv`. If you are using your own data, the map assumes that you have a file named `letters.csv` with at least the following columns:
 
 | Field              | Column Name      |
 | ------------------ | ---------------- |
@@ -58,7 +58,7 @@ To stop the server you will hit `Ctrl-C`. To start the server again, you don't n
 # Code Organization
 
 ## Parser
-All the code for the parser is contained in the `parser` folder. At present this is a single file with a config file and a `package.json` for node installation.
+All the code for the parser is contained in the `parser` folder. At present this is a single file named `get-data.js`, a configuration file named `config.json`, and a `package.json` for node installation.
 
 ## Map
 The core code of the map is organized into four different files, all of which can be found in the `js` folder:
