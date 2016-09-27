@@ -116,7 +116,6 @@ var lines = data.rows.reduce((p, c) => {
   }
 }, [])
 
-
 // Create a marker cluster group for the points
 // This allows clustering points at different zoom levels
 // to keep the map looking tidy
@@ -147,7 +146,6 @@ markers.addLayers(markerList)
 var mapLines = createLineLayers(data.minYear, data.maxYear)
 mapLines.addTo(map)
 
-
 /*
 * Helper Functions
 */
@@ -175,11 +173,9 @@ function createPointMarkers(lowerYear, upperYear) {
   var markerList = []
 
   var markerList = filteredPoints.map((p) => {
-    for (var j = 0; j <  pointRanges.length; j++)
-        if (p.count > pointRanges[j] && p.count < pointRanges[j+1]) {
-            pointColor = pointColors[j]
-            pointWeight = pointWeights[j]
-        }
+    var j = arrayRangeFind(pointRanges, p.count)
+    pointColor = pointColors[j]
+    pointWeight = pointWeights[j]
 
     var letter = p.count == 1 ? "letter" : "letters"
     var letterMarker = L.circleMarker(p.point).setStyle({color: pointColor, radius: pointWeight})
@@ -216,20 +212,21 @@ function createLineLayers(minYear, maxYear) {
 
   // Setup line and point values used for display
   var lineMax = Math.max.apply(Math, lines.map((l) => { return l.count }))
-  var lineColors = ['#410d4f','#a44abc','#16a7e6']
+  var lineColors = ['#410d4f','#410d4f','#410d4f']
+  //'#a44abc','#16a7e6']
   var lineWeights = [1, 6, 10]
-  var lineRanges = [0, Math.floor(lineMax * 0.5), lineMax]
+  var lineRanges = [1, Math.max(1, Math.floor(lineMax * 0.5)), lineMax]
   var lineColor = ''
   var lineWeight = lineWeights[0]
 
   var mapLines = L.layerGroup()
+  console.log(filteredLines)
 
   for (var i = 0; i < filteredLines.length; i++) {
-    for (var j = 0; j <  lineRanges.length; j++)
-        if (filteredLines[i].count > lineRanges[j] && filteredLines[i].count < lineRanges[j+1]) {
-            lineColor = lineColors[j]
-            lineWeight = lineWeights[j]
-        }
+    var j = arrayRangeFind(lineRanges, filteredLines[i].count)
+    lineColor = isNaN(j) ? lineColor : lineColors[j]
+    lineWeight = isNaN(j) ? lineWeight : lineWeights[j]
+
     var letter = filteredLines[i].count == 1 ? "letter" : "letters"
     var popUp = document.createElement('p')
     popUp.innerHTML = filteredLines[i].name + "<br />" + filteredLines[i].count + " " + letter
@@ -267,4 +264,20 @@ function filterPoints(minYear, maxYear) {
   markers.clearLayers()
   markers.addLayers(createPointMarkers(minYear, maxYear))
   markers.refreshClusters()
+}
+
+
+// Find a value between the values of an array
+function arrayRangeFind(searchArray, searchValue) {
+  if (searchValue < searchArray[0]) {
+    return NaN
+  }
+
+  for (var i = 0; i < searchArray.length; i++) {
+    if (searchValue >= searchArray[i] && searchValue < searchArray[i+1]) {
+      return i
+    }
+  }
+
+  return 0
 }
