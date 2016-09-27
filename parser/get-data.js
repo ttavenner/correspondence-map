@@ -5,8 +5,7 @@ var csvWriter = require('csv-write-stream')
 
 var config = require('./config.json')
 
-
-var headers = ['link_dpla', 'link_org', 'title', 'sender', 'recipient',
+var headers = ['dplaLink', 'link', 'title', 'sender', 'recipient',
                'year', 'description', 'place', 'date']
 
 var writer = csvWriter({headers: headers})
