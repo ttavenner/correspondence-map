@@ -40,14 +40,14 @@ function getData() {
     if (!err && res.statusCode == 200) {
       records.docs.map((l) => {
 
-        letter = {link_dpla: l.hasOwnProperty('@id') ? l['@id'] : l.object['@id']}
+        letter = {dplaLink: l.hasOwnProperty('@id') ? l['@id'] : l.object['@id']}
 
         // Metadata contains most of the information we want, but isn't always present
         if (l.originalRecord.hasOwnProperty('metadata')) {
 
             letter.title = l.originalRecord.metadata.title
             letter.year = l.originalRecord.metadata.date
-            letter.link_org = l.originalRecord.metadata['identifier-access']
+            letter.link = l.originalRecord.metadata['identifier-access']
 
             if (l.originalRecord.metadata.hasOwnProperty('creator')) {
 
