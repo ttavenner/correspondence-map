@@ -29,7 +29,6 @@ var points = data.rows.reduce((p, c) => {
     pos = p.map((e) => {return e.name}).lastIndexOf(c.sentLocation)
 
     if (pos != -1) {
-      //if (typeof p[pos].point === "undefined") { console.log(p[pos])}
       if (!isNaN(c.cleanDate)) {
         p[pos].lowerYear = Math.max(Math.min(p[pos].lowerYear, c.cleanDate.getFullYear()), data.minYear)
         p[pos].upperYear = Math.min(Math.max(p[pos].upperYear, c.cleanDate.getFullYear()), data.maxYear)
@@ -182,9 +181,12 @@ function createPointMarkers(lowerYear, upperYear) {
 
     letterMarker.count = p.count
 
+    // Generates the pop-ups that appear when you click on a point.
     var popUp = document.createElement('p')
     popUp.innerHTML = p.name + "<br />" + p.count + " " + letter
-    popUp.addEventListener('click', () => {sidebar.getLetters("place", p.name)})
+    popUp.name = p.name
+    popUp.type = "place"
+    popUp.addEventListener('click', sidebar.getLetters, false)
 
     letterMarker.bindPopup(popUp)
                 .on('popupclose', () => {sidebar.toggleInfo('close')})
@@ -220,17 +222,19 @@ function createLineLayers(minYear, maxYear) {
   var lineWeight = lineWeights[0]
 
   var mapLines = L.layerGroup()
-  console.log(filteredLines)
 
   for (var i = 0; i < filteredLines.length; i++) {
     var j = arrayRangeFind(lineRanges, filteredLines[i].count)
     lineColor = isNaN(j) ? lineColor : lineColors[j]
     lineWeight = isNaN(j) ? lineWeight : lineWeights[j]
 
+    // Generates the pop-ups that appear when you click on a line.
     var letter = filteredLines[i].count == 1 ? "letter" : "letters"
     var popUp = document.createElement('p')
     popUp.innerHTML = filteredLines[i].name + "<br />" + filteredLines[i].count + " " + letter
-    popUp.onclick = () => {sidebar.getLetters("line", filteredLines[i].name)}
+    popUp.name = filteredLines[i].name
+    popUp.type = "line"
+    popUp.addEventListener('click', sidebar.getLetters, false)
     mapLines.addLayer(filteredLines[i].line.setStyle({weight: lineWeight, color: lineColor})
             .bindPopup(popUp)
             .on('popupclose', () => {sidebar.toggleInfo('close')}))

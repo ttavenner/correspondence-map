@@ -26,12 +26,12 @@ var sidebar = (() => {
 
 
   // Generate detailed text for letter info and display in sidebar
-  function getLetters(type, name) {
-      var sentLocation = type == "place" ? name : name.split(" to ")[0]
-      var receivedLocation = type == "place" ? name : name.split(" to ")[1]
+  function getLetters(evt) {
+      var sentLocation = evt.target.type == "place" ? evt.target.name : evt.target.name.split(" to ")[0]
+      var receivedLocation = evt.target.type == "place" ? evt.target.name : evt.target.name.split(" to ")[1]
       var text = ""
 
-      if (type == "place") {
+      if (evt.target.type == "place") {
         text = data.rows.reduce((p, c) => {
           if (c.sentLocation == sentLocation || c.receivedLocation == receivedLocation) {
 
@@ -49,7 +49,7 @@ var sidebar = (() => {
         },"")
       }
 
-      if (type == "line") {
+      if (evt.target.type == "line") {
           text = data.rows.reduce((p, c) => {
               if (c.sentLocation == sentLocation && c.receivedLocation == receivedLocation) {
                 return p + "<p class='letter'>" +
@@ -59,6 +59,9 @@ var sidebar = (() => {
                 c.title + "<br />" +
                 "<a href='" + c.link + "'>Original Document</a>" +
                 "</p>"
+              }
+              else {
+                return p
               }
           },"")
       }
