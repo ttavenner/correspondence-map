@@ -5,7 +5,7 @@
 */
 
 // Create the map and set the basic boundaries
-var tileURL = 'http://{s}.tiles.mapbox.com/v3/ttavenner.e7ef536d/{z}/{x}/{y}.png'
+var tileURL = 'https://{s}.tiles.mapbox.com/v3/ttavenner.e7ef536d/{z}/{x}/{y}.png'
 var zoom = (window.innerWidth < 500) ? 2 : (window.innerWidth < 1050) ? 3 : 4
 var map = L.map('map').setView([40.5624608,-40.1166736], zoom)
 
